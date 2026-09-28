@@ -1,0 +1,145 @@
+<div style="background: #fff; border: 0.5mm solid #667eea; border-radius: 12px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); position: relative; overflow: hidden; overflow-x: auto;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);"></div>
+    
+    <h3 style="margin-bottom: 25px; color: #333; font-size: 20px; font-weight: 600; padding-top: 10px;">Loan Product Details</h3>
+    
+    <div style="margin-bottom: 15px;">
+        <button onclick="toggleEditMode()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px;">✏️ Edit Mode</button>
+    </div>
+
+    <table id="loanTable" style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <tr>
+                <th style="padding: 16px 12px; text-align: left; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Purpose</th>
+                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable ROI</th>
+                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable LTV</th>
+                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable Repayment Term</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #fafbff;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Flat Purchase</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: white;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Plot/Site Purchase</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: #fafbff;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">House Purchase</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: white;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Villa Purchase</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: #fafbff;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Salaried: Self Occupied House</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: white;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Salaried: Site Property</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: #fafbff;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Self Occupied House</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: white;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Commercial</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+
+            <tr style="background: #f0f4ff; border-left: 3px solid #667eea;">
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Site Property</td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="editButtonsDiv" style="display: none; margin-top: 15px;">
+        <button onclick="saveData()" style="background: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; margin-right: 10px;">✓ Save Changes</button>
+        <button onclick="toggleEditMode()" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px;">✕ Cancel</button>
+    </div>
+
+    <div style="background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px 18px; margin-top: 25px; border-radius: 6px; font-size: 12px; color: #555; line-height: 1.6;">
+        <strong>⚠️ Disclaimer:</strong> All above subject to change as per RBI Guidelines. The rates, LTV (Loan-to-Value) limits, and repayment terms mentioned above are indicative and subject to periodic review and modification based on market conditions, regulatory guidelines, and company policies.
+    </div>
+</div>
+
+<script>
+function toggleEditMode() {
+    const displays = document.querySelectorAll('.display');
+    const edits = document.querySelectorAll('.edit');
+    const editButtonsDiv = document.getElementById('editButtonsDiv');
+    
+    const isEditMode = displays[0].style.display === 'none';
+    
+    displays.forEach(el => el.style.display = isEditMode ? 'inline' : 'inline');
+    edits.forEach(el => el.style.display = isEditMode ? 'none' : 'inline-block');
+    editButtonsDiv.style.display = isEditMode ? 'none' : 'block';
+    
+    // Load data into inputs
+    if (!isEditMode) {
+        edits.forEach(el => {
+            const displayText = el.previousElementSibling.textContent;
+            el.value = displayText === '—' ? '' : displayText;
+        });
+    }
+}
+
+function saveData() {
+    const displays = document.querySelectorAll('.display');
+    const edits = document.querySelectorAll('.edit');
+    
+    edits.forEach((el, index) => {
+        const value = el.value.trim() || '—';
+        displays[index].textContent = value;
+    });
+    
+    // Save to browser localStorage
+    localStorage.setItem('loanTableData', JSON.stringify(
+        Array.from(edits).map(el => el.value.trim() || '—')
+    ));
+    
+    alert('✓ Changes saved successfully!');
+    toggleEditMode();
+}
+
+// Load data on page load
+window.addEventListener('load', function() {
+    const savedData = localStorage.getItem('loanTableData');
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        const displays = document.querySelectorAll('.display');
+        data.forEach((value, index) => {
+            displays[index].textContent = value;
+        });
+    }
+});
+</script>
