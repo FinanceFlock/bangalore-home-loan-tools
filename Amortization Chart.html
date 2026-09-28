@@ -1,0 +1,341 @@
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMI Calculator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      border: 0.5mm solid #667eea;
+      border-radius: 10px;
+      background: #fff;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 5px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    .top-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    input, select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.12);
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+    .summary-box {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 18px 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .summary-box h4 {
+      margin: 0 0 8px 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+    .summary-box div {
+      font-size: 26px;
+      font-weight: 700;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #e6e6e6;
+      padding: 9px 8px;
+      text-align: center;
+    }
+    th {
+      background: #f7f7f7;
+      color: #333;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .money {
+      text-align: right;
+    }
+    .partial {
+      background: #fff7d6;
+      color: #8a6d00;
+      font-weight: 600;
+    }
+    .copy-btn {
+      margin-top: 15px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      opacity: 0.95;
+    }
+    @media (max-width: 800px) {
+      .top-row, .summary {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 520px) {
+      .top-row, .summary {
+        grid-template-columns: 1fr;
+      }
+      body { padding: 15px; }
+    }
+  </style>
+
+
+  <div class="container">
+    <div class="top-row">
+      <div class="field">
+        <label for="loanAmount">Enter loan amount</label>
+        <input id="loanAmount" type="number" value="1000000">
+      </div>
+
+      <div class="field">
+        <label for="roi">ROI (p.a.)</label>
+        <input id="roi" type="number" step="0.01" value="7">
+      </div>
+
+      <div class="field">
+        <label for="years">Term in years</label>
+        <input id="years" type="number" value="20">
+      </div>
+
+      <div class="field">
+        <label for="dueDate">Select EMI Due Date</label>
+        <select id="dueDate">
+          <option value="7">7th</option>
+          <option value="10">10th</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-box">
+        <h4>EMI</h4>
+        <div id="emiValue">₹ 0.00</div>
+      </div>
+      <div class="summary-box">
+        <h4>Total Interest</h4>
+        <div id="interestValue">₹ 0.00</div>
+      </div>
+      <div class="summary-box">
+        <h4>Total Payment</h4>
+        <div id="paymentValue">₹ 0.00</div>
+      </div>
+      <div class="summary-box">
+        <h4>Balance</h4>
+        <div id="balanceValue">₹ 0.00</div>
+      </div>
+    </div>
+
+    <div class="top-row">
+      <div class="field">
+        <label for="partialDate">Partial Part Payment Date</label>
+        <input id="partialDate" type="date">
+      </div>
+      <div class="field">
+        <label for="partialAmount">Partial Payment Amount</label>
+        <input id="partialAmount" type="number" value="0">
+      </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyStatement()">View &amp; Copy Statement</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>EMI Date</th>
+          <th>Opening</th>
+          <th>Interest</th>
+          <th>Principal</th>
+          <th>Closing</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const loanAmountInput = document.getElementById('loanAmount');
+    const roiInput = document.getElementById('roi');
+    const yearsInput = document.getElementById('years');
+    const dueDateInput = document.getElementById('dueDate');
+    const partialDateInput = document.getElementById('partialDate');
+    const partialAmountInput = document.getElementById('partialAmount');
+
+    function formatMoney(value) {
+      return '₹ ' + Number(value).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatDate(date) {
+      const d = new Date(date);
+      return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function generateEmiSchedule() {
+      const principal = parseFloat(loanAmountInput.value) || 0;
+      const annualRate = parseFloat(roiInput.value) || 0;
+      const years = parseFloat(yearsInput.value) || 0;
+      const dueDate = parseInt(dueDateInput.value) || 7;
+      const partialDate = partialDateInput.value ? new Date(partialDateInput.value) : null;
+      const partialAmount = parseFloat(partialAmountInput.value) || 0;
+
+      if (principal <= 0 || years <= 0) {
+        document.getElementById('emiValue').textContent = '₹ 0.00';
+        document.getElementById('interestValue').textContent = '₹ 0.00';
+        document.getElementById('paymentValue').textContent = '₹ 0.00';
+        document.getElementById('balanceValue').textContent = '₹ 0.00';
+        document.getElementById('scheduleBody').innerHTML = '';
+        return;
+      }
+
+      const monthlyRate = (annualRate / 12) / 100;
+      const totalMonths = years * 12;
+
+      let emi = 0;
+      if (monthlyRate === 0) {
+        emi = principal / totalMonths;
+      } else {
+        emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
+          (Math.pow(1 + monthlyRate, totalMonths) - 1);
+      }
+
+      let balance = principal;
+      let totalInterest = 0;
+      let schedule = [];
+
+      let currentDate = new Date();
+      currentDate.setDate(dueDate);
+      currentDate.setHours(0, 0, 0, 0);
+
+      for (let month = 1; month <= totalMonths; month++) {
+        const interest = balance * monthlyRate;
+        let principalPaid = emi - interest;
+        let closingBalance = balance - principalPaid;
+
+        if (partialDate && currentDate.getTime() === partialDate.getTime() && partialAmount > 0 && partialAmount < balance) {
+          closingBalance = balance - principalPaid - partialAmount;
+          principalPaid = principalPaid + partialAmount;
+          schedule.push({
+            month,
+            emiDate: formatDate(currentDate),
+            opening: balance,
+            interest,
+            principal: principalPaid,
+            closing: closingBalance,
+            isPartial: true
+          });
+          balance = closingBalance;
+        } else {
+          schedule.push({
+            month,
+            emiDate: formatDate(currentDate),
+            opening: balance,
+            interest,
+            principal: principalPaid,
+            closing: closingBalance,
+            isPartial: false
+          });
+          balance = closingBalance;
+        }
+
+        totalInterest += interest;
+
+        if (balance <= 0) break;
+
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+
+      const totalPayment = emi * schedule.length;
+      document.getElementById('emiValue').textContent = formatMoney(emi);
+      document.getElementById('interestValue').textContent = formatMoney(totalInterest);
+      document.getElementById('paymentValue').textContent = formatMoney(totalPayment);
+      document.getElementById('balanceValue').textContent = formatMoney(balance);
+
+      let html = '';
+      schedule.forEach(item => {
+        html += `
+          <tr class="${item.isPartial ? 'partial' : ''}">
+            <td>${item.month}</td>
+            <td>${item.emiDate}</td>
+            <td class="money">${formatMoney(item.opening)}</td>
+            <td class="money">${formatMoney(item.interest)}</td>
+            <td class="money">${formatMoney(item.principal)}</td>
+            <td class="money">${formatMoney(item.closing)}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('scheduleBody').innerHTML = html;
+    }
+
+    function copyStatement() {
+      const table = document.getElementById('scheduleBody');
+      if (!table.innerHTML.trim()) {
+        alert('No statement to copy');
+        return;
+      }
+      const text = document.getElementById('scheduleBody').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Statement copied successfully!');
+      }).catch(() => {
+        alert('Copy failed. Please try again.');
+      });
+    }
+
+    [loanAmountInput, roiInput, yearsInput, dueDateInput, partialDateInput, partialAmountInput].forEach(field => {
+      field.addEventListener('input', generateEmiSchedule);
+      field.addEventListener('change', generateEmiSchedule);
+    });
+
+    generateEmiSchedule();
+  </script>
