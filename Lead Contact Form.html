@@ -1,0 +1,235 @@
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-top: 40px;
+      padding-left: 30px;
+    }
+
+    .contact-wrapper {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .contact-container {
+      background: #fff;
+      border: 0.5mm solid #667eea;
+      border-radius: 12px;
+      padding: 30px 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .contact-header h1 {
+      margin: 0 0 8px;
+      color: #1f1f1f;
+      font-size: 28px;
+    }
+
+    .contact-header p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+      color: #333;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 8.5L1.5 4h9L6 8.5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 30px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.96;
+    }
+
+    .success-message,
+    .error-message {
+      display: none;
+      margin-bottom: 15px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .success-message {
+      background: #e9f9ef;
+      color: #1a7f43;
+      border: 1px solid #9ad7b0;
+    }
+
+    .error-message {
+      background: #fff0f0;
+      color: #c0392b;
+      border: 1px solid #f2b5b5;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .contact-wrapper {
+        max-width: 100%;
+      }
+
+      .contact-container {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+
+
+  <div class="contact-wrapper">
+    <div class="contact-header">
+      <h1>Get In Touch</h1>
+      <p>We’d love to hear from you.</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="success-message" id="successMessage">Thank you! Your message has been sent.</div>
+      <div class="error-message" id="errorMessage">Please fill in all required fields.</div>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required="" placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required="" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number (India) *</label>
+          <input type="tel" id="phone" name="phone" required="" placeholder="+91 98765 43210">
+        </div>
+
+        <div class="form-group">
+          <label for="project_name">Project Name *</label>
+          <input type="text" id="project_name" name="project_name" required="" placeholder="Enter project name">
+        </div>
+
+        <div class="form-group">
+          <label for="purpose">Select Purpose *</label>
+          <select id="purpose" name="purpose" required="">
+            <option value="">Choose an option</option>
+            <option value="Flat Purchase">Flat Purchase</option>
+            <option value="House Construction">House Construction</option>
+            <option value="Resale House/Flat/Site">Resale House/Flat/Site</option>
+            <option value="Mortgage Loan">Mortgage Loan</option>
+          </select>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const successMessage = document.getElementById("successMessage");
+    const errorMessage = document.getElementById("errorMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const projectName = document.getElementById("project_name").value.trim();
+      const purpose = document.getElementById("purpose").value;
+
+      if (!name || !email || !phone || !projectName || !purpose) {
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+        return;
+      }
+
+      successMessage.style.display = "block";
+      errorMessage.style.display = "none";
+      form.reset();
+    });
+  </script>
