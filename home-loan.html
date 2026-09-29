@@ -1,145 +1,286 @@
-<div style="background: #fff; border: 0.5mm solid #667eea; border-radius: 12px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); position: relative; overflow: hidden; overflow-x: auto;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);"></div>
-    
-    <h3 style="margin-bottom: 25px; color: #333; font-size: 20px; font-weight: 600; padding-top: 10px;">Loan Product Details</h3>
-    
-    <div style="margin-bottom: 15px;">
-        <button onclick="toggleEditMode()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px;">✏️ Edit Mode</button>
-    </div>
+ <div id="loan-tool" style="background:#fff;border:0.5mm solid #667eea;border-radius:12px;padding:30px;box-shadow:0 10px 25px rgba(0,0,0,0.08);position:relative;overflow:hidden;font-family:Arial,sans-serif;">
 
-    <table id="loanTable" style="width: 100%; border-collapse: collapse; font-size: 14px;">
-        <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-            <tr>
-                <th style="padding: 16px 12px; text-align: left; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Purpose</th>
-                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable ROI</th>
-                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable LTV</th>
-                <th style="padding: 16px 12px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px;">Applicable Repayment Term</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="background: #fafbff;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Flat Purchase</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+  <div style="position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,#667eea 0%,#764ba2 100%);"></div>
 
-            <tr style="background: white;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Plot/Site Purchase</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+  <h3 style="margin-bottom:25px;color:#333;font-size:20px;font-weight:600;padding-top:10px;">
+    Loan Product Details
+  </h3>
 
-            <tr style="background: #fafbff;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">House Purchase</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+  <div style="margin-bottom:15px;">
+    <button id="editButton"
+      onclick="toggleEditMode()"
+      style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;border:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;">
+      ✏️ Edit Mode
+    </button>
 
-            <tr style="background: white;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Villa Purchase</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+    <button id="saveButton"
+      onclick="saveLoanDetails()"
+      style="display:none;background:#198754;color:white;border:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;margin-left:8px;">
+      💾 Save Changes
+    </button>
 
-            <tr style="background: #fafbff;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Salaried: Self Occupied House</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+    <button id="resetButton"
+      onclick="resetLoanDetails()"
+      style="display:none;background:#dc3545;color:white;border:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;margin-left:8px;">
+      ↺ Reset
+    </button>
+  </div>
 
-            <tr style="background: white;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Salaried: Site Property</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+  <table id="loanTable" style="width:100%;border-collapse:collapse;font-size:14px;">
 
-            <tr style="background: #fafbff;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Self Occupied House</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+    <thead>
+      <tr style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;">
+        <th style="padding:16px 12px;text-align:left;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;font-size:12px;">
+          Purpose
+        </th>
+        <th style="padding:16px 12px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;font-size:12px;">
+          Applicable ROI
+        </th>
+        <th style="padding:16px 12px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;font-size:12px;">
+          Applicable LTV
+        </th>
+        <th style="padding:16px 12px;text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;font-size:12px;">
+          Applicable Repayment Term
+        </th>
+      </tr>
+    </thead>
 
-            <tr style="background: white;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Commercial</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
+    <tbody>
 
-            <tr style="background: #f0f4ff; border-left: 3px solid #667eea;">
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; color: #555; font-weight: 600;">Mortgage Loan – Self Employed: Site Property</td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 7.5%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 80px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 80%"></td>
-                <td style="padding: 14px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #667eea; font-weight: 600;"><span class="display">—</span><input type="text" class="edit" style="width: 100px; padding: 5px; border: 1px solid #667eea; border-radius: 4px; display: none;" placeholder="e.g., 20 years"></td>
-            </tr>
-        </tbody>
-    </table>
+      <tr>
+        <td class="purpose">Flat Purchase</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
 
-    <div id="editButtonsDiv" style="display: none; margin-top: 15px;">
-        <button onclick="saveData()" style="background: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; margin-right: 10px;">✓ Save Changes</button>
-        <button onclick="toggleEditMode()" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px;">✕ Cancel</button>
-    </div>
+      <tr>
+        <td class="purpose">Plot/Site Purchase</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
 
-    <div style="background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px 18px; margin-top: 25px; border-radius: 6px; font-size: 12px; color: #555; line-height: 1.6;">
-        <strong>⚠️ Disclaimer:</strong> All above subject to change as per RBI Guidelines. The rates, LTV (Loan-to-Value) limits, and repayment terms mentioned above are indicative and subject to periodic review and modification based on market conditions, regulatory guidelines, and company policies.
-    </div>
+      <tr>
+        <td class="purpose">House Purchase</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Villa Purchase</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Mortgage Loan – Salaried: Self Occupied House</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Mortgage Loan – Salaried: Site Property</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Mortgage Loan – Self Employed: Self Occupied House</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Mortgage Loan – Self Employed: Commercial</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+      <tr>
+        <td class="purpose">Mortgage Loan – Self Employed: Site Property</td>
+        <td><span class="display">—</span><input class="edit roi" placeholder="e.g., 7.5%"></td>
+        <td><span class="display">—</span><input class="edit ltv" placeholder="e.g., 80%"></td>
+        <td><span class="display">—</span><input class="edit term" placeholder="e.g., 20 years"></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div style="margin-top:25px;background:#f1f5ff;border-left:4px solid #667eea;padding:14px 16px;border-radius:7px;font-size:13px;color:#555;">
+    <strong>⚠️ Disclaimer:</strong>
+    All above are subject to change as per applicable RBI guidelines.
+    The rates, LTV (Loan-to-Value) limits, and repayment terms mentioned above
+    are indicative and subject to periodic review and modification based on
+    market conditions, regulatory guidelines, and lender policies.
+  </div>
+
 </div>
 
+<style>
+  #loan-tool table tr {
+    background:#fafbff;
+  }
+
+  #loan-tool table tr:nth-child(even) {
+    background:#ffffff;
+  }
+
+  #loan-tool table td {
+    padding:14px 12px;
+    border-bottom:1px solid #e0e0e0;
+    color:#555;
+    font-weight:600;
+  }
+
+  #loan-tool table td:not(:first-child) {
+    text-align:center;
+    color:#667eea;
+  }
+
+  .edit {
+    display:none;
+    width:90%;
+    max-width:130px;
+    padding:7px 8px;
+    border:1px solid #667eea;
+    border-radius:5px;
+    font-size:13px;
+    box-sizing:border-box;
+  }
+
+  .edit:focus {
+    outline:none;
+    box-shadow:0 0 0 2px rgba(102,126,234,0.15);
+  }
+
+  @media(max-width:800px) {
+    #loan-tool {
+      padding:18px;
+      overflow-x:auto;
+    }
+
+    #loan-tool table {
+      min-width:850px;
+    }
+  }
+</style>
+
 <script>
-function toggleEditMode() {
-    const displays = document.querySelectorAll('.display');
-    const edits = document.querySelectorAll('.edit');
-    const editButtonsDiv = document.getElementById('editButtonsDiv');
-    
-    const isEditMode = displays[0].style.display === 'none';
-    
-    displays.forEach(el => el.style.display = isEditMode ? 'inline' : 'inline');
-    edits.forEach(el => el.style.display = isEditMode ? 'none' : 'inline-block');
-    editButtonsDiv.style.display = isEditMode ? 'none' : 'block';
-    
-    // Load data into inputs
-    if (!isEditMode) {
-        edits.forEach(el => {
-            const displayText = el.previousElementSibling.textContent;
-            el.value = displayText === '—' ? '' : displayText;
-        });
-    }
-}
+  const STORAGE_KEY = "bangaloreHomeLoanDetails";
 
-function saveData() {
-    const displays = document.querySelectorAll('.display');
-    const edits = document.querySelectorAll('.edit');
-    
-    edits.forEach((el, index) => {
-        const value = el.value.trim() || '—';
-        displays[index].textContent = value;
+  function toggleEditMode() {
+    const editFields = document.querySelectorAll("#loan-tool .edit");
+    const displayFields = document.querySelectorAll("#loan-tool .display");
+
+    editFields.forEach(field => {
+      field.style.display = "inline-block";
     });
-    
-    // Save to browser localStorage
-    localStorage.setItem('loanTableData', JSON.stringify(
-        Array.from(edits).map(el => el.value.trim() || '—')
-    ));
-    
-    alert('✓ Changes saved successfully!');
-    toggleEditMode();
-}
 
-// Load data on page load
-window.addEventListener('load', function() {
-    const savedData = localStorage.getItem('loanTableData');
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        const displays = document.querySelectorAll('.display');
-        data.forEach((value, index) => {
-            displays[index].textContent = value;
-        });
+    displayFields.forEach(field => {
+      field.style.display = "none";
+    });
+
+    document.getElementById("editButton").style.display = "none";
+    document.getElementById("saveButton").style.display = "inline-block";
+    document.getElementById("resetButton").style.display = "inline-block";
+  }
+
+  function saveLoanDetails() {
+    const rows = document.querySelectorAll("#loanTable tbody tr");
+    const data = [];
+
+    rows.forEach(row => {
+      const purpose = row.querySelector(".purpose").textContent.trim();
+      const roi = row.querySelector(".roi").value.trim();
+      const ltv = row.querySelector(".ltv").value.trim();
+      const term = row.querySelector(".term").value.trim();
+
+      data.push({
+        purpose: purpose,
+        roi: roi,
+        ltv: ltv,
+        term: term
+      });
+
+      row.querySelector(".display").textContent = roi || "—";
+      row.querySelectorAll(".display")[1].textContent = ltv || "—";
+      row.querySelectorAll(".display")[2].textContent = term || "—";
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+    document.querySelectorAll("#loanTool .edit").forEach(field => {
+      field.style.display = "none";
+    });
+
+    document.querySelectorAll("#loanTool .display").forEach(field => {
+      field.style.display = "inline";
+    });
+
+    document.getElementById("editButton").style.display = "inline-block";
+    document.getElementById("saveButton").style.display = "none";
+    document.getElementById("resetButton").style.display = "none";
+
+    alert("Loan details saved successfully.");
+  }
+
+  function loadLoanDetails() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) return;
+
+    try {
+      const data = JSON.parse(saved);
+      const rows = document.querySelectorAll("#loanTable tbody tr");
+
+      data.forEach((item, index) => {
+        if (!rows[index]) return;
+
+        const roi = rows[index].querySelector(".roi");
+        const ltv = rows[index].querySelector(".ltv");
+        const term = rows[index].querySelector(".term");
+
+        roi.value = item.roi || "";
+        ltv.value = item.ltv || "";
+        term.value = item.term || "";
+
+        const displays = rows[index].querySelectorAll(".display");
+
+        displays[0].textContent = item.roi || "—";
+        displays[1].textContent = item.ltv || "—";
+        displays[2].textContent = item.term || "—";
+      });
+    } catch (error) {
+      console.log("Saved loan data could not be loaded.");
     }
-});
+  }
+
+  function resetLoanDetails() {
+    if (!confirm("Reset all loan details?")) return;
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    document.querySelectorAll("#loanTable .edit").forEach(field => {
+      field.value = "";
+      field.style.display = "none";
+    });
+
+    document.querySelectorAll("#loanTable .display").forEach(field => {
+      field.textContent = "—";
+      field.style.display = "inline";
+    });
+
+    document.getElementById("editButton").style.display = "inline-block";
+    document.getElementById("saveButton").style.display = "none";
+    document.getElementById("resetButton").style.display = "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", loadLoanDetails);
 </script>
